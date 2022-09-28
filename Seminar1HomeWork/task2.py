@@ -4,7 +4,7 @@ arrayX = [0, 1]
 arrayY = [0, 1]
 arrayZ = [0, 1]
 flag = True
-print('}X  |Y  |Z  |f1 |f2 |')
+print('|X  |Y  |Z  |f1 |f2 |')
 for i in arrayX:
     for j in arrayY:
         for k in arrayZ:
