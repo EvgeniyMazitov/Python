@@ -6,7 +6,7 @@
 # - 7 -> да
 # - 1 -> нет
 
-dayNumber = int(input('Введите число, обозначающее день недели (от 1 до 7)'))
+dayNumber = int(input('Введите число, обозначающее день недели [1-7]'))
 if dayNumber == 6 or dayNumber == 7:
     print('Введенное число соответствует выходному дню')
 elif dayNumber in range(1, 6):
