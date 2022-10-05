@@ -23,7 +23,7 @@ def DigitSum(number):
     return sumOfDigit
 
 
-rounded = 1
+rounded = 2
 inputNumber = EnterFloat("Введите вещественное число: ")
 buffer = inputNumber
 
@@ -34,4 +34,4 @@ intBuffer = int(buffer)
 print(intBuffer)
 
 print(
-    f'Сумма всех цифр числа {inputNumber} с точностью не более {rounded+1} знаков после запятой равна {DigitSum(int(buffer))}')
+    f'Сумма всех цифр числа {inputNumber} с точностью не более {rounded} знаков после запятой равна {DigitSum(int(buffer))}')
