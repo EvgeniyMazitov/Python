@@ -26,6 +26,6 @@ for i in range(0, LenList):
 print(f'Анализируемый список: {list}')
 
 sum = 0
-for i in range(1, len(list)-1, 2):
+for i in range(1, len(list), 2):
     sum += list[i]
 print(f'Сумма элементов на нечетных позициях списка = {sum}')
