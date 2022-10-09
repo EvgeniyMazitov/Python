@@ -8,3 +8,17 @@
 # Результат:
 # 40x⁹ - x⁸ -5x⁷ + 15x⁶ +5x⁴ + 5x³ + x² - 13x¹ + 53 = 0
 
+path1 = 'Seminar4Homework/Mnogochlen.txt'
+path2 = 'Seminar4Homework/Mnogochlen1.txt'
+
+
+with open(path1, 'r', encoding='UTF-8') as data:
+    file = data.readline()
+
+koeff_file = file.replace(' = 0', '').replace(
+    ' + ', ' ').replace(' - ', ' -').replace('*x^2', '').replace('*x', '').split()
+stepen_file = file.replace(' = 0', '').replace(
+    ' + ', ' ').replace(' - ', ' -').replace('*x**2', '').replace('*x', '').split()
+
+print(koeff_file)
+print(stepen_file)

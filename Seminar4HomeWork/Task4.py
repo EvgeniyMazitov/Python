@@ -30,17 +30,21 @@ def MnogochlenGenertor():
     numberK = EnterInt('Введите натуральное число степени многочлена K: ')
 
     resultString = ""
-    for i in range(numberK, 0, -1):
-        koeff = random.randint(-100, 101)
+    for i in range(numberK, -1, -1):
+        koeff = random.randint(-1, 3)
         if koeff != 0 and i == numberK:
             resultString += str(koeff) + "*x^"+str(i)
-        elif koeff > 0 and i != 1:
+        elif koeff > 0 and i not in [0, 1]:
             resultString += " + "+str(koeff) + "*x^"+str(i)
-        elif koeff < 0 and i != 1:
+        elif koeff < 0 and i not in [0, 1]:
             resultString += " - "+str(abs(koeff)) + "*x^"+str(i)
         elif koeff > 0 and i == 1:
-            resultString += " + "+str(koeff)
+            resultString += " + "+str(koeff) + "*x"
         elif koeff < 0 and i == 1:
+            resultString += " - "+str(abs(koeff)) + "*x"
+        elif koeff > 0 and i == 0:
+            resultString += " + "+str(koeff)
+        elif koeff < 0 and i == 0:
             resultString += " - "+str(abs(koeff))
     resultString += " = 0"
     return resultString
