@@ -31,7 +31,7 @@ def MnogochlenGenertor():
 
     resultString = ""
     for i in range(numberK, -1, -1):
-        koeff = random.randint(-1, 2)
+        koeff = random.randint(-100, 101)
         if koeff > 0 and resultString == '':
             resultString += str(koeff) + "*x^"+str(i)
         elif koeff < 0 and resultString == '':
