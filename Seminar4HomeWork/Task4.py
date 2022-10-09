@@ -25,23 +25,32 @@ def EnterInt(question):
     return number
 
 
-numberK = EnterInt('Введите натуральное число степени многочлена K: ')
-path = 'Seminar4Homework/Mnogochlen.txt'
-resultString = ""
-for i in range(numberK, 0, -1):
-    koeff = random.randint(-100, 101)
-    if koeff != 0 and i == numberK:
-        resultString += str(koeff) + "*x^"+str(i)
-    elif koeff > 0 and i != 1:
-        resultString += " + "+str(koeff) + "*x^"+str(i)
-    elif koeff < 0 and i != 1:
-        resultString += " - "+str(abs(koeff)) + "*x^"+str(i)
-    elif koeff > 0 and i == 1:
-        resultString += " + "+str(koeff)
-    elif koeff < 0 and i == 1:
-        resultString += " - "+str(abs(koeff))
-resultString += " = 0"
-print(resultString)
+def MnogochlenGenertor():
 
-with open(path, 'a', encoding='UTF-8') as data:
-    data.write(resultString)
+    numberK = EnterInt('Введите натуральное число степени многочлена K: ')
+
+    resultString = ""
+    for i in range(numberK, 0, -1):
+        koeff = random.randint(-100, 101)
+        if koeff != 0 and i == numberK:
+            resultString += str(koeff) + "*x^"+str(i)
+        elif koeff > 0 and i != 1:
+            resultString += " + "+str(koeff) + "*x^"+str(i)
+        elif koeff < 0 and i != 1:
+            resultString += " - "+str(abs(koeff)) + "*x^"+str(i)
+        elif koeff > 0 and i == 1:
+            resultString += " + "+str(koeff)
+        elif koeff < 0 and i == 1:
+            resultString += " - "+str(abs(koeff))
+    resultString += " = 0"
+    return resultString
+
+
+path1 = 'Seminar4Homework/Mnogochlen.txt'
+path2 = 'Seminar4Homework/Mnogochlen1.txt'
+
+with open(path1, 'w', encoding='UTF-8') as data:
+    data.write(MnogochlenGenertor())
+
+with open(path2, 'w', encoding='UTF-8') as data:
+    data.write(MnogochlenGenertor())
