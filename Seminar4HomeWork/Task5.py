@@ -37,7 +37,7 @@ def DictinaryMaker(path):
     return dict
 
 
-def UnionDict(dict1, dict2):
+def UnionDict(dict1:dict, dict2:dict):
     dict3 = dict1.copy()
     dict3.update(dict2)
 
@@ -52,7 +52,7 @@ def UnionDict(dict1, dict2):
     return dict3
 
 
-def WriteStringMaker(dict):
+def WriteStringMaker(dict:dict):
 
     sorted_dict = sorted(dict.items(), reverse=True)
     writeString = ''
