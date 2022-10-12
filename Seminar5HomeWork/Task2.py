@@ -6,52 +6,88 @@
 # Оба задания обязательны
 
 
+from random import randint
 import tkinter as tk
+from tkinter import messagebox as mb
 
 
 def StartGame():
-    label123 = tk.Label(mainWindow, text=f'Начата новая игра {count}',
-                        font=('Arial', 15, 'bold'))
+    typeGame = ''
+    if radio_GameType_var.get() == 0:
+        typeGame = 'Игрок против Игрока'
+        radio_GameType_PvBot['state'] = tk.DISABLED
+    else:
+        typeGame = 'Игрок против ИИ'
+        radio_GameType_PvP['state'] = tk.DISABLED
+    print(typeGame)
+    labelNewGame = tk.Label(mainWindow, text=f'Начата новая игра {typeGame}',
+                            font=('Arial', 15, 'bold'))
     buttom_GameStart['state'] = tk.DISABLED
+    label_PlayerName['text'] = f'Ход игрока: {CurrentPlayer()}'
 
-    label123.pack()
+    labelNewGame.pack()
 
 
 def NextStep():
     global count
-    count += 1
-    buttom_NextStep['text'] = f'Сделать ход {count}'
+    global playerName
+    global currentPlayer
+    global maxKonf
     valueEntry = entryValue.get()
-    if valueEntry:
-        print(valueEntry)
+    if buttom_GameStart['state'] != tk.DISABLED:
+        mb.showerror('Ошибка', 'Нажмите "Начать игру"')
     else:
-        print('Введите количество конфет и нажмите еще раз')
+        if valueEntry and 0 < int(valueEntry) <= 28 and int(valueEntry) < maxKonf:
+            count += 1
+            buttom_NextStep['text'] = f'Сделать ход {count}'
+            label_PlayerName['text'] = f'Ход игрока: {CurrentPlayer()}'
+            maxKonf -= int(valueEntry)
+            labelNewStep = tk.Label(
+                mainWindow, text=f'Игрок {CurrentPlayer()} взял [{valueEntry}] конфет (Осталось {maxKonf} конфет)')
+            labelNewStep.pack()
+        else:
+            mb.showerror(
+                'Ошибка', 'Введите количество конфет и нажмите еще раз')
+
+
+def CurrentPlayer():
+    global count
+    global playerName
+    global first
+    currentPlayer = ""
+    if radio_GameType_var.get() == 1:
+        currentPlayer = playerName[(count+first) % 2]
+    else:
+        currentPlayer = playerName[((count+first) % 2)+2]
+    return currentPlayer
 
 
 count = 1
+first = randint(0, 2)
+playerName = {0: 'Бот', 1: 'Игрок1', 2: 'Игрок1', 3: 'Игрок2'}
+maxKonf = 150
+
 mainWindow = tk.Tk()
 photo = tk.PhotoImage(file='Seminar5HomeWork\IcoGame.png')
 mainWindow.iconphoto(False, photo)
 mainWindow.title('Игра с конфетами')
-mainWindow.geometry("500x600+300+100")
+mainWindow.geometry("500x800+300+100")
 mainWindow.resizable(False, False)
-
-
-radioOption = tk.StringVar(value='PvP')
 
 label_GameType = tk.Label(
     mainWindow, text='Выберите тип игры', font=('Arial', 15, 'bold'))
 label_GameType.pack()
 
-
-radio_GameType_PvP = tk.Radiobutton(mainWindow,
-                                    text='PvP', value='PvP', textvariable=radioOption)
+radio_GameType_var = tk.BooleanVar()
+radio_GameType_var.set(0)
+radio_GameType_PvP = tk.Radiobutton(text='Игрок против игрока',
+                                    variable=radio_GameType_var, value=0)
+radio_GameType_PvBot = tk.Radiobutton(text='Игрок против ИИ',
+                                      variable=radio_GameType_var, value=1)
 radio_GameType_PvP.pack()
-
-radio_GameType_PvBot = tk.Radiobutton(mainWindow,
-                                      text='PvBot', value='PvBot', textvariable=radioOption)
 radio_GameType_PvBot.pack()
 
+currentPlayer = CurrentPlayer()
 
 label_GameStart = tk.Label(
     mainWindow, text=f'Нажмите кнопку "Начать игру":', font=('Arial', 15, 'bold'))
@@ -65,7 +101,7 @@ label_PlayerName = tk.Label(
 label_PlayerName.pack()
 
 label_EntryValue = tk.Label(
-    mainWindow, text='Введите количество конфет', font=('Arial', 15, 'bold'))
+    mainWindow, text='Введите количество конфет (не более 28):', font=('Arial', 15, 'bold'))
 label_EntryValue.pack()
 
 entryValue = tk.Entry(mainWindow, text='1')
