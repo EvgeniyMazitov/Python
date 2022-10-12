@@ -4,3 +4,12 @@
 # 1. Добавьте игру против бота
 # 2. Подумайте как наделить бота 'интеллектом'
 # Оба задания обязательны
+
+import tkinter as tk
+mainWindow = tk.Tk()
+photo = tk.PhotoImage(file='Seminar5HomeWork\IcoGame.png')
+mainWindow.iconphoto(False, photo)
+mainWindow.title('Игра с конфетами')
+mainWindow.geometry("500x600+300+100")
+mainWindow.resizable(False, False)
+mainWindow.mainloop()
