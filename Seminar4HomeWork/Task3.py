@@ -8,21 +8,28 @@
 inputString = input("Введите строку чисел : ")
 
 result = []
-rule = []
+# rule = []
 
-for i in range(0, len(inputString)):
-    count = 0
-    if inputString[i] in rule:
-        continue
-    for j in range(i+1, len(inputString)):
-        if inputString[i] == inputString[j]:
-            count += 1
-            if count >= 1:
-                rule.append(inputString[i])
-                break
-    if count == 0:
-        try:
-            result.append(int(inputString[i]))
-        except:
-            result.append(inputString[i])
+# for i in range(0, len(inputString)):
+#     count = 0
+#     if inputString[i] in rule:
+#         continue
+#     for j in range(i+1, len(inputString)):
+#         if inputString[i] == inputString[j]:
+#             count += 1
+#             if count >= 1:
+#                 rule.append(inputString[i])
+#                 break
+#     if count == 0:
+#         try:
+#             result.append(int(inputString[i]))
+#         except:
+#             result.append(inputString[i])
+
+#   новый код:
+
+result = list(map(int, inputString))
+result = [i for i in result if result.count(i) == 1]
+
+#   Старый вывод:
 print(f'Cписок уникальных элементов = {result}')
