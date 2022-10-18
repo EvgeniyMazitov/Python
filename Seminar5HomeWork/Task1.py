@@ -7,10 +7,15 @@ print(f'{inputStr}\n')
 print('Слова исключаются по подстроке:')
 print(f'{subString}\n')
 words = inputStr.split(' ')
-newWords = []
-for i in words:
-    if subString not in i:
-        newWords.append(i)
-newStr = ' '.join(newWords)
+# newWords = []
+
+# for i in words:
+#     if subString not in i:
+#         newWords.append(i)
+
+words = ' '.join([i for i in words if subString not in i])
+
+# newStr = ' '.join(newWords)
 print('Результирующая строка:')
-print(newStr)
+# print(newStr)
+print(words)
