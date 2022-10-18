@@ -16,16 +16,20 @@ def EnterIntNumber(question):
     return number
 
 
-list = []
+inputList = []
 LenList = EnterIntNumber("Введите количество элементов в списке : ")
 
 for i in range(0, LenList):
-    list.append(EnterIntNumber(
+    inputList.append(EnterIntNumber(
         f'Введите значение {i+1}-го элемента списка : '))
 
-print(f'Анализируемый список: {list}')
+print(f'Анализируемый список: {inputList}')
 
-sum = 0
-for i in range(1, len(list), 2):
-    sum += list[i]
-print(f'Сумма элементов на нечетных позициях списка = {sum}')
+# sum = 0
+# for i in range(1, len(inputList), 2):
+#     sum += inputList[i]
+
+result = sum([y for x, y in enumerate(inputList) if x % 2 != 0])
+
+print(f'Сумма элементов на нечетных позициях списка = {result}')
+# print(f'Сумма элементов на нечетных позициях списка = {sum}')
