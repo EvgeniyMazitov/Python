@@ -20,3 +20,14 @@ def print_window(result):
     my_label = tk.Label(win, text=result)
     my_label.pack()
     win.mainloop()
+
+def InputString():
+    oString=input(f'Введите строку для вычисления: ')
+    return oString
+
+def InputChoice():
+    choice=int(input('Введите тип вычисления (1-посимвольное, 2-единой строкой): '))
+    return choice
+
+def PrintResultString(oString,result):
+    print(f'Результат операции {oString} = {result}')
