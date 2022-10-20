@@ -21,7 +21,7 @@ def start():
             first = Model.get_first()
             second = Model.get_second()
             View.OutputResult(first, second, oper, result)
-            View.print_window(result)
+            # View.print_window(result)
             Model.set_first(result)
     elif choice == 2:
         oString = View.InputString()
