@@ -15,11 +15,17 @@ def start():
                 Model.set_path(path)
                 Model.open_file()
             case 2:
-                pass
+                Model.write_file()
             case 3:
                 contact = View.input_contact()
                 Model.new_contact(contact)
             case 4:
                 contact = View.input_change()
                 Model.change_contact(*contact)
-            
+            case 5:
+                id_contact = View.input_delete()
+                Model.delete_contact(id_contact)
+            case 6:
+                choise, value = View.input_search()
+                search_result = Model.search_contact(choise, value)
+                View.output_search(search_result)
